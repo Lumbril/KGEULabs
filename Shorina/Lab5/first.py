@@ -314,9 +314,11 @@ a = 0
 b = 0
 for i in range(n):
     x = float(input())
-    if not ((b < a) and (a > r)) and not ((b > a) and (a < x) and (i > 2) and f):
+    if not ((b < a) and (a > x)) and not ((b > a) and (a < x) and (i > 2) and f):
         res = i
         f = False
+    a = b
+    b = x
 print(res)
 print()
 
@@ -335,6 +337,8 @@ for j in range(k):
         if not ((b < a) and (a > r)) and not ((b > a) and (a < x) and (i > 2) and f):
             res = i
             f = False
+        a = b
+        b = x
     if res == 0:
         sum += 1
 print(sum)
