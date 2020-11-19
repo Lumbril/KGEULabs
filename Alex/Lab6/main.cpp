@@ -9,24 +9,90 @@ vector<vector <double>> C;  //результат умножения матриц
 vector<vector <double>> AT;  //матрица алгеброических дополнений
 vector<vector <double>> M;  //матрица миноров
 
-//Заполнение по 3ему варианту
+//Заполнение по 10ому варианту
 void inputArray() {
-    int k = -1;
-    int val = 1;
+    int n = A.size(), j, i, kj, ki;
+    int num = 1; int m, endj, endi;
+	ki = 0;
+	kj = 0;
+	i = 0;
+	m = n;
+	while (m > 2)
+		m = m - 4;
+	if (m == 2) {
+		endi = n / 2;
+		endj = endi - 1;
 
-    for (int i = 0; i < A.size(); i++) {
-        k *= -1;
+	}
+	else if (n % 2 == 1) {
+		endi = n / 2;
+		endj = endi;
+	}
+	else if (m == 0)
+	{
+		endj = n / 2;
+		endi = endj - 1;
+	}
 
-        if (k > 0) {
-            for (int j = 0; j < A[i].size(); j += k){
-                A[j][i] = val++;
-            }
-        } else {
-            for (int j = A[i].size() - 1; j > -1; j += k){
-                A[j][i] = val++;
-            }
-        }
-    }
+	while (A[endj][endi]!=n*n){
+	i = ki;
+	for (j = 0 + kj; j < n - 1 - kj; j++) {
+		if (A[endj][endi] == (n*n))
+			break;
+		A[j][i] = num;
+		num++;
+
+	}
+	j = n - 1 - kj;
+	for (i = 0 + ki; i < n - 1 - ki; i++) {
+		if (A[endj][endi] == (n*n))
+			break;
+		A[j][i] = num;
+		num++;
+	}
+	for (j = n - 1 - kj; j > kj; j--) {
+		if (A[endj][endi] == (n*n))
+			break;
+		A[j][i] = num;
+		num++;
+	}
+	for (i = n - 1 - ki; i > ki; i--) {
+		if (A[endj][endi] == (n*n))
+			break;
+		A[j][i] = num;
+		num++;
+	}
+	ki++; kj++;
+	j = kj;
+	for (i = ki; i <= n - 1 - ki; i++) {
+		if (A[endj][endi] == (n*n))
+			break;
+		A[j][i] = num;
+		num++;
+	}
+	i = n - 1 - ki;
+	for (j = kj + 1; j <= n - 1 - kj; j++) {
+		if (A[endj][endi] == (n*n))
+			break;
+		A[j][i] = num;
+		num++;
+	}
+	j = n - 1 - kj;
+	for (i = n - 2 - ki; i >= ki; i--) {
+		if (A[endj][endi] == (n*n))
+			break;
+		A[j][i] = num;
+		num++;
+	}
+	i = ki; kj++;
+	for (j = n - 1 - kj; j >= kj; j--) {
+		if (A[endj][endi] == (n*n))
+			break;
+		A[j][i] = num;
+		num++;
+	}
+	ki++;
+}
 }
 
 void copyArray() {

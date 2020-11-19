@@ -227,3 +227,89 @@ b = float(input("Введите число b: "))
 for i in range(3):
     op = int(input("Введите число op: "))
     print(Calc(a, b, op))
+
+#19
+def MinMaxN(a):
+    mn = int(a[0])
+    mx = int(a[0])
+    for i in range(len(a)):
+        mn = min(int(a[i]), mn)
+        mx = max(int(a[i]), mx)
+    return mn, mx
+print("Задача 19:")
+a = input("Введите числа: ").split()
+ans = MinMaxN(a)
+print("Минимум - ", ans[0], "\nМаксимум - ", ans[1])
+
+#20
+def printK(n, k):
+    return n[k - 1]
+print("Задача 20")
+n = str(input("Введите число n:"))
+k = input("Введите число k:")
+print("К-тый элемент числа n - ", printK(n, k))
+
+#21
+def toDec(n):
+    return int(n, 2)
+def toBin(n):
+    return format(n, 'b')
+print("Задача 21:")
+n = input("Введите двоичное число: ")
+print(toDec(n))
+print(toBin(toDec(n)))
+
+#22
+def toDec(n):
+    return int(n, 16)
+def toHex(n):
+    return format(n, 'X')
+print("Задача 22:")
+n = input("Введите 16чное число: ")
+print(toDec(n))
+print(toHex(toDec(n)))
+
+#23
+def HexToBin(n):
+    return format(int(n, 16), 'b')
+print("Задача 23:")
+n = input("Введите 16чное число: ")
+print(HexToBin(n))
+
+#24
+def f(pos, vec, n):
+    for i in range(n):
+        comm = int(input("Введите команду: "))
+
+        if comm == 0:
+            pos += vec
+        elif comm == 1:
+            vec = [-vec[1], vec[0]]
+        else:
+            vec = [vec[1], -vec[0]]
+    napr = ""
+    delta = pos[0] + pos[1]
+    if vec[0] == 1 and vec[1] == 0:
+        napr = "С"
+    elif vec[0] == -1 and vec[1] == 0:
+        napr = "Ю"
+    elif vec[0] == 0 and vec[1] == 1:
+        napr = 'В'
+    else:
+        napr = 'З'
+
+    print("Сдвинулся на ", abs(delta), " клеток")
+    print("Направление - ", napr)
+print("Задача 24:")
+k = int(input("Введите число"))
+c = input("Введите направление")
+vec = []
+if c == 'С':
+    vec = [1, 0]
+elif c == 'Ю':
+    vec = [-1, 0]
+elif c == 'В':
+    vec = [0, 1]
+else:
+    vec = [0, -1]
+f([0, 0], vec, k)
