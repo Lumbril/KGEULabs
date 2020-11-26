@@ -14,6 +14,16 @@ int strToInt(string str) {
     return ans;
 }
 
+string deleteAllSpace(string str) {
+    for (int i = 0; i < str.size(); i++) {
+        if (str[i] == ' ') {
+            str.erase(i, 1);
+        }
+    }
+
+    return str;
+}
+
 int main() {
     freopen("main.jj", "r", stdin);
 
@@ -26,34 +36,37 @@ int main() {
             cout << values[buff];
 
         } else {
-            string value = s.substr(0, s.find("=") - 1);
-            string buf = s.substr(s.find("=") + 2, s.size() - 1);
+            s = deleteAllSpace(s);
 
-            while (string :: npos != buf.find("+ ")) {
-                buf.erase(buf.find("+ "), 2);
+            string value = s.substr(0, s.find("="));
+            string buf = s.substr(s.find("=") + 1, s.size() - 1);
+
+            while (string :: npos != buf.find("+")) {
+                //buf.erase(buf.find("+"), 1);
+                buf[buf.find("+")] = ' ';
             }
 
-            string s = "";
+            string str = "";
             int k = 0;
 
             for (int i = 0; i < buf.size(); i++) {
                 if (buf[i] == ' ') {
-                    if (('a' <= s[0] && s[0] <= 'z') || ('A' <= s[0] && s[0] <= 'Z')) {
-                        k += values[s];
+                    if (('a' <= str[0] && str[0] <= 'z') || ('A' <= str[0] && str[0] <= 'Z')) {
+                        k += values[str];
                     } else {
-                        k += strToInt(s);
+                        k += strToInt(str);
                     }
 
-                    s = "";
+                    str = "";
                 } else {
-                    s += buf[i];
+                    str += buf[i];
                 }
             }
 
-            if (('a' <= s[0] && s[0] <= 'z') || ('A' <= s[0] && s[0] <= 'Z')) {
-                k += values[s];
+            if (('a' <= str[0] && str[0] <= 'z') || ('A' <= str[0] && str[0] <= 'Z')) {
+                k += values[str];
             } else {
-                k += strToInt(s);
+                k += strToInt(str);
             }
 
             values[value] = k;
