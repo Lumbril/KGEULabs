@@ -1,0 +1,16 @@
+ 	In this chapter, we will discuss in detail about the shell input/output redirections. Most unix system commands take input from your terminal and send the resulting output back to your terminal. A command normally reads its input from the standard input, which happens to be your terminal by default. Similarly, a command normally writes its output to standard output, which is again your terminal by default.
+	The output from a command normally intended for standard output can be easily diverted to a file instead. This capability is known as output redirection.
+	If the notation > file is appended to any command that normally writes its output to standard output, the output of that command will be written to file instead of your terminal. Check the following who command which redirects the complete output of the command in the users file.
+
+	1. Pgm > file - output of pgm is redirected to file
+	2. Pgm < file - program pgm reads its input from file
+	3. Pgm >> file - output of pgm is appended to file
+
+
+Количество абзацев = 4
+Количество строк = 6
+Количество слов = 167
+Количество символов = 1010
+	из них 	букв 			= 798
+			цифр 			= 3
+			других символов 	= 209

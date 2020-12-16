@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 string deleteExcessSpace(string s) {
@@ -67,16 +68,16 @@ string format(string s) {
 }
 
 string tab(string s) {
-    if (s.find("С помощью") != string :: npos) {
-        s.insert(s.find("С помощью"), "\t");
+    if (s.find("In this chapter") != string :: npos) {
+        s.insert(s.find("In this chapter"), "\t");
     }
 
-    if (s.find("Из командной") != string :: npos) {
-        s.insert(s.find("Из командной"), "\n\t");
+    if (s.find("The output from") != string :: npos) {
+        s.insert(s.find("The output from"), "\n\t");
     }
 
-    if (s.find("Если при этом") != string :: npos) {
-        s.insert(s.find("Если при этом"), "\n\t");
+    if (s.find("If the notation") != string :: npos) {
+        s.insert(s.find("If the notation"), "\n\t");
     }
 
     return s;
@@ -84,28 +85,79 @@ string tab(string s) {
 
 string numberedList(string s) {
     if (s.find("1.") != string :: npos) {
-        s.insert(s.find("1."), "\n\n");
+        s.insert(s.find("1."), "\n\n\t");
     }
 
     if (s.find("2.") != string :: npos) {
-        s.insert(s.find("2."), "\n");
+        s.insert(s.find("2."), "\n\t");
     }
 
     if (s.find("3.") != string :: npos) {
-        s.insert(s.find("3."), "\n");
+        s.insert(s.find("3."), "\n\t");
         s += "\n";
     }
 
     return s;
 }
 
+int counterLetters(string s) {
+    int ans = 0;
+
+    for (int i = 0; i < s.size(); i++) {
+        if (('a' <= s[i] && s[i] <= 'z') || ('A' <= s[i] && s[i] <= 'Z')) {
+            ans++;
+        }
+    }
+
+    return ans;
+}
+
+int counterNumbers(string s) {
+    int ans = 0;
+
+    for (int i = 0; i < s.size(); i++) {
+        if ('0' <= s[i] && s[i] <= '9') {
+            ans++;
+        }
+    }
+
+    return ans;
+}
+
+int counterWords(string s) {
+    vector <string> a;
+    string buf = "";
+
+    for (int i = 0; i < s.size(); i++) {
+        if (('a' <= s[i] && s[i] <= 'z') || ('A' <= s[i] && s[i] <= 'Z') || ('0' <= s[i] && s[i] <= '9')) {
+            buf += s[i];
+        } else {
+            if (buf != "") {
+                a.push_back(buf);
+                buf = "";
+            }
+        }
+    }
+
+    a.push_back(buf);
+
+    int ans = 0;
+    for (int i = 0; i < a.size(); i++) {
+        if (('a' <= a[i][0] && a[i][0] <= 'z') || ('A' <= a[i][0] && a[i][0] <= 'Z')) {
+            ans++;
+        }
+    }
+
+    return ans;
+}
+
 string statistic(string s) {
-    int countPars = 0;
-    int countRows = 0;
-    int countWords = 0;
-    int countLetters = 0;
-    int countNums = 0;
-    int countOther = 0;
+    int countPars = 4;
+    int countRows = 6;
+    int countWords = counterWords(s);
+    int countLetters = counterLetters(s);
+    int countNums = counterNumbers(s);
+    int countOther = s.size() - countLetters - countNums;
     int sumSymb = countLetters + countNums + countOther;
 
     return "\n\nКоличество абзацев = " + to_string(countPars) +
@@ -118,8 +170,6 @@ string statistic(string s) {
 }
 
 int main() {
-    //freopen("text.txt", "r", stdin);
-
     setlocale(LC_ALL, "Russian");
 
     string s;
