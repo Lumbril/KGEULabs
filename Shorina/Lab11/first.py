@@ -263,45 +263,24 @@ b2 = os.path.getsize(s2)
 b3 = os.path.getsize(s3)
 k = max(b1, b2, b3)
 l = min(b1, b2, b3)
-f1 = ''
-f2 = ''
-if b1 == k:
-    f1 = open(s1, 'r')
-elif b2 == k:
-    f1 = open(s2, 'r')
-else:
-    f1 = open(s3, 'r')
-if b1 == l:
-    f2 = open(s1, 'r')
-elif b2 == l:
-    f2 = open(s2, 'r')
-else:
-    f2 = open(s3, 'r')
+dict = {b1: s1, b2: s2, b3: s3}
+f1 = open(dict[k], 'r')
+f2 = open(dict[l], 'r')
 ans1 = []
 for line in f1:
-    ans1 += line.split()
-f1.close()
+    ans1 += line
 ans2 = []
 for line in f2:
-    ans2 += line.split()
+    ans2 += line
+f1.close()
 f2.close()
-if b1 == k:
-    f2 = open(s1, 'r')
-elif b2 == k:
-    f2 = open(s2, 'r')
-else:
-    f2 = open(s3, 'r')
-if b1 == l:
-    f1 = open(s1, 'r')
-elif b2 == l:
-    f1 = open(s2, 'r')
-else:
-    f1 = open(s3, 'r')
+f1 = open(dict[l], 'w')
+f2 = open(dict[k], 'w')
 for i in ans1:
     f1.write(i)
-f1.close()
 for i in ans2:
     f2.write(i)
+f1.close()
 f2.close()
 
 #19
