@@ -1,7 +1,9 @@
-x =1
+
+	x =1
 y = 2+ x
 z = x +y + y
+
 zz=z+z
-A12 = 2
+	A12 = 4
 A = A12 + zz
-print A
+		print A

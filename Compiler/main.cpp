@@ -14,7 +14,18 @@ int strToInt(string str) {
     return ans;
 }
 
+
+string deleteAllTabs(string str) {
+    while (str.find("\t") != string :: npos) {
+        str.erase(str.find("\t"), 1);
+    }
+
+    return str;
+}
+
 string deleteAllSpace(string str) {
+    str = deleteAllTabs(str);
+
     for (int i = 0; i < str.size(); i++) {
         if (str[i] == ' ') {
             str.erase(i, 1);
@@ -24,13 +35,17 @@ string deleteAllSpace(string str) {
     return str;
 }
 
-int main() {
-    freopen("main.jj", "r", stdin);
+int main(int argc, char *argv[]) {
+    //string fileName = argv[1];
+
+    freopen(argv[1], "r", stdin);
 
     string s;
 
     while (getline(cin, s)) {
         if (s.find("print") != string :: npos) {
+            s = deleteAllTabs(s);
+
             string buff = s.substr(6, s.size() - 1);
 
             cout << values[buff];
